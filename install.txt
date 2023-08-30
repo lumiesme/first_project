@@ -1,0 +1,1 @@
+pip install -r requires.txt  # kui koduarvutis vaja installida midagi. Siis saab korraga kõik vajaliku requires failist
