@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic import (TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView)
 from django.urls import reverse_lazy
 from .models import Student  #enda loodud asi, seetottu peab viimasena olema, jrk oluline importidel
+from .models import Teacher
 
 
 # Create your views here.
@@ -40,3 +41,14 @@ class StudentDeleteView(DeleteView):
     model = Student
     success_url = reverse_lazy('first_app:student_list')  # ehk kuhu peale kustutamist l'heb, student list lehele
 
+class TeacherListView(ListView):
+    # model_list.html -> student_list.html
+    model = Teacher
+    queryset = Teacher.objects.order_by('name')  # nime jargi sorteeritud, result ordered by name
+    context_object_name = 'teachers'  # default object_list is now students
+    #paginate_by = 10  # 10 per page in ListView
+class TeacherCreateView(CreateView):
+    template_name = 'first_app/teacher_form_create.html'
+    model = Teacher  # info tuleb modelist teacher classist?
+    fields = '__all__' # tahame, et saaks muuta koiki v2ljasid
+    success_url = reverse_lazy('first_app:teacher_list')

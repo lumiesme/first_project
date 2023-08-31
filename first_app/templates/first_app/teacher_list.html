@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<h1>Teachers list</h1>  <!--h1 t2ht ja tab- siis tuleb see-->
+    <a href="{% url 'first_app:home' %}">Homepage</a>
+    <ul>
+    {% for teacher in object_list %}  <!--enne oli object_list nuud on students--> <!--voib paista koodis valja html, aga kui kasutada {# siis ei paista #}-->
+        <li>
+            {{ teacher.name }} <h>teaches</h> {{ teacher.subject }}
+        </li>  <!--p t2ht ja tab- siis tuleb l6ik, hiljem muutsin li, kuna on element-->
+
+    {% endfor %}
+    </ul>
+        <p>There are {{ object_list.count }} teacher(s) in total</p>
+{% endblock content %}
