@@ -3,6 +3,7 @@ from django.views.generic import (TemplateView, ListView, DetailView, CreateView
 from django.urls import reverse_lazy
 from .models import Student  #enda loodud asi, seetottu peab viimasena olema, jrk oluline importidel
 from .models import Teacher
+from .models import Subject
 
 
 # Create your views here.
@@ -52,3 +53,21 @@ class TeacherCreateView(CreateView):
     model = Teacher  # info tuleb modelist teacher classist?
     fields = '__all__' # tahame, et saaks muuta koiki v2ljasid
     success_url = reverse_lazy('first_app:teacher_list')
+class SubjectListView(ListView):
+    # model_list.html -> student_list.html
+    model = Subject #Connected to Models Student-siit tuleb info
+    queryset = Subject.objects.order_by('id')  # nime jargi sorteeritud, result ordered by name
+    context_object_name = 'subjects' # default object_list is now students
+    paginate_by = 10 # 10 per page in ListView
+class SubjectCreateView(CreateView):
+    template_name = 'first_app/subject_form_create.html'
+    fields = "__all__"
+    model = Subject
+    success_url = reverse_lazy('first_app:subject_list')
+class SubjectUpdateView(UpdateView):
+    model = Subject
+    fields = ['name']
+    success_url = reverse_lazy('first_app:subject_list')
+class SubjectDeleteView(DeleteView):
+    model = Subject
+    success_url = reverse_lazy('first_app:subject_list')

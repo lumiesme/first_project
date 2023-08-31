@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<h1>Subject list</h1>  <!--h1 t2ht ja tab- siis tuleb see-->
+    <a href="{% url 'first_app:home' %}">Homepage</a>
+    <ul>
+    {% for subject in subjects %}  <!--enne oli object_list nuud on students--> <!--voib paista koodis valja html, aga kui kasutada {# siis ei paista #}-->
+        <li>
+            {{ subject.name }}
+            [<a href="/first_app/subject_update/{{ subject.id }}" class="text-success">Update</a>]
+            [<a href="/first_app/subject_delete/{{ subject.id }}" class="text-danger">Delete</a>]
+
+        </li>  <!--p t2ht ja tab- siis tuleb l6ik, hiljem muutsin li, kuna on element-->
+    {% endfor %}
+    </ul>
+
+    <ul class="pagination">
+        {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page=1">&laquo;</a>   <!--laquo teeb 2 noolekest(topeltnooled) vasakulevms, ja lsaquo teeb teisele poole-->
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">&lsaquo;</a>
+            </li>
+        {% endif %}
+
+        <li class="page-link text-dark">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+        </li>
+        {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}">&rsaquo;</a>  <!--naitab jrg lehte 8hekordne nooleke-->
+            </li>
+             <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">&raquo;</a>
+            </li>
+        {% endif %}
+
+  </ul>
+
+{% endblock %}

@@ -27,8 +27,11 @@ class Teacher(models.Model):  # kui topelt kirj.teachers siis tuleb tabelisse te
     name = models.CharField(max_length=100)
     """ kommentaari saab kirjutada nii """
     subject = models.CharField(max_length=100)
-
 class TeachersAdmin(admin.ModelAdmin):
 
     list_display = ['name', 'subject']      # nii nagu siia kirjutad, täpselt samas jrk tuleb ka lehel need tulemused
-    list_per_page = 10
+    #list_per_page = 10
+class Subject(models.Model):
+    subject = models.CharField(max_length=100)
+class SubjectAdmin(admin.ModelAdmin):
+    list_display = ['subject']
