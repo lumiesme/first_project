@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<h1>Add a new student</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Add Student" class="btn btn-primary">
+    </form>
+    <p><a href="/first_app/student_list">Student List</a></p>
+    <p><a href="{% url 'first_app:home' %}">Homepage</a></p>
+{% endblock %}
