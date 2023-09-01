@@ -56,8 +56,8 @@ class TeacherCreateView(CreateView):
 class SubjectListView(ListView):
     # model_list.html -> student_list.html
     model = Subject #Connected to Models Student-siit tuleb info
-    queryset = Subject.objects.order_by('id')  # nime jargi sorteeritud, result ordered by name
-    context_object_name = 'subjects' # default object_list is now students
+    queryset = Subject.objects.order_by('subject')  # nime jargi sorteeritud, result ordered by name
+    context_object_name = 'subject' # default object_list is now students
     paginate_by = 10 # 10 per page in ListView
 class SubjectCreateView(CreateView):
     template_name = 'first_app/subject_form_create.html'
@@ -66,7 +66,7 @@ class SubjectCreateView(CreateView):
     success_url = reverse_lazy('first_app:subject_list')
 class SubjectUpdateView(UpdateView):
     model = Subject
-    fields = ['name']
+    fields = ['subject']
     success_url = reverse_lazy('first_app:subject_list')
 class SubjectDeleteView(DeleteView):
     model = Subject

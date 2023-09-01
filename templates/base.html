@@ -14,7 +14,7 @@
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="{% url 'first_app:teacher_list' %}">Teachers</a>
+    <a class="nav-link active" aria-current="page" href="{% url 'first_app:teacher_list' %}">Teachers</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -28,6 +28,12 @@
         </li>
           <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{% url 'first_app:subject_create'  %}">Add subject</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'first_app:student_list'  %}">Students</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'first_app:student_create'  %}">Add student</a>
         </li>
 
         <li class="nav-item dropdown">
